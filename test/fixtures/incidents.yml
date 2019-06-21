@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  reception_date: 2019-01-21
+  group: MyString
+  username: MyString
+  hostname: MyString
+  os: MyString
+  product: MyString
+  subject: MyString
+  solution: MyString
+  story: MyText
+  status: MyString
+  close_date: 2019-01-21
+  remarks: MyString
+  operator: MyString
+
+two:
+  type: 
+  reception_date: 2019-01-21
+  group: MyString
+  username: MyString
+  hostname: MyString
+  os: MyString
+  product: MyString
+  subject: MyString
+  solution: MyString
+  story: MyText
+  status: MyString
+  close_date: 2019-01-21
+  remarks: MyString
+  operator: MyString

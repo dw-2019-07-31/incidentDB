@@ -1,0 +1,178 @@
+
+<div class="container">
+    <% if notice %>
+      <p class="alert alert-primary"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    <% if flash[:error] %>
+      <p class="alert alert-danger"><%= flash[:error] %></p>
+    <% end %>
+
+  <%= form_with(model: incident, local: true) do |form| %>
+    <% if incident.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(incident.errors.count, "error") %> prohibited this incident from being saved:</h2>
+
+        <ul>
+        <% incident.errors.full_messages.each do |message| %>
+          <li class="alert alert-danger"><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-row">
+      <div class="form-group col-md-4 mb-1">
+        <div class="field form-group">
+          <%= form.label :reception_date ,class:'control-label' %><br>
+          <%= form.text_field :reception_date, id: :incident_reception_date, class:'form-control has-initial-date-picker' %>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4 mb-1">
+        <div class="field form-group">
+          <%= form.label :operator ,class:'control-label' %>
+          <%= select_tag "incident[operator]", options_for_select(@choice_operator,:selected => @incident.operator), :class => "form-control custom-select" %>
+        </div>
+      </div>
+      
+      <div class="form-group col-md-4 mb-1">
+        <div class="field form-group">
+          <%= form.label :type ,class:'control-label' %>
+          <%= select_tag "incident[type]", options_for_select(@choice_type,:selected => @incident.type), :class => "form-control custom-select" %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group col-md-4 mb-1">
+        <div class="field form-group">
+          <%= form.label :group ,class:'control-label' %>
+          <%= form.text_field :group, id: :incident_group, class:'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4 mb-1">
+        <div class="field form-group">
+          <%= form.label :username ,class:'control-label' %>
+          <%= form.text_field :username, id: :incident_username , class:'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4 mb-1">
+        <div class="field form-group">
+          <%= form.label :costtime ,class:'control-label' %>
+          <%= form.text_field :costtime, id: :incident_costtime , class:'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4 mb-1">
+        <div class="field form-group">
+          <%= form.label :hostname ,class:'control-label' %>
+          <%= form.text_field :hostname, id: :incident_hostname , class:'form-control' %>
+        </div>
+      </div>
+      
+      <div class="form-group col-md-4 mb-1">
+        <div class="field form-group">
+          <%= form.label :os ,class:'control-label' %>
+          <%= form.text_field :os, id: :incident_os , class:'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4 mb-1">
+        <div class="field form-group">
+          <%= form.label :product ,class:'control-label' %>
+          <%= form.text_field :product, id: :incident_product , class:'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12 mb-1">
+        <div class="field form-group">
+          <%= form.label :subject ,class:'control-label' %>
+          <%= form.text_field :subject, id: :incident_subject , class:'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12 mb-1">
+        <div class="field form-group">
+          <%= form.label :solution ,class:'control-label' %>
+          <%= form.text_field :solution, id: :incident_solution , class:'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12 mb-1">
+        <div class="field form-group">
+          <%= form.label :story ,class:'control-label' %>
+          <%= form.text_area :story, id: :incident_story ,:size=>"20x15", class:'form-control'%>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-1">
+        <div class="field form-group">
+          <%= form.label :status ,class:'control-label' %>
+          <%= select_tag "incident[status]", options_for_select(@choice_status,:selected => @incident.status), :class => "form-control custom-select" %>
+        </div>
+      </div>
+
+      <div class="form-group col-md-6 mb-1">
+        <div class="field form-group">
+          <%= form.label :close_date ,class:'control-label' %><br>
+          <%= form.text_field :close_date, id: :incident_close_date, class:'form-control no-initial-date-picker' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12 mb-1">
+        <div class="field form-group">
+          <%= form.label :remarks ,class:'control-label' %>
+          <%= form.text_area :remarks, id: :incident_remarks ,:size=>"20x3", class:'form-control' %>
+        </div>
+      </div>
+    </div>
+    
+    <% @incident.avatars.each_with_index do |avatar, index| %>
+      <div class="form-row">
+        <div class="form-group col-md-12 mb-1">
+          <div class="field form-group">
+            <%= form.label :avatars ,class:'control-label' %>
+            <%= link_to image_tag(avatar.url, :size => "400x400", class:'img-fluid'), download_picture_incident_path(@incident, index), :method => :get, class:'' %> 
+            <%= link_to "削除", delete_picture_incident_path(@incident, index), :method => :delete, data: { confirm: "本当に削除しますか?" } %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="form-row">
+      <div class="form-group col-md-12 mb-1">
+        <div class="field form-group">
+          <%= form.label :avatars ,class:'control-label' %>
+          <%= form.file_field :avatars, id: :incident_avatars, multiple: true, class:'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions row justify-content-center">
+      <%= form.submit class: "btn btn-primary col-6 mb-1" %>
+    </div>
+    <div class="row justify-content-center">
+      <%= link_to '戻る', incidents_filter_path, :class => "btn btn-warning col-6 mb-3" %>
+    </div>
+  <% end %>
+
+</div>
+
+

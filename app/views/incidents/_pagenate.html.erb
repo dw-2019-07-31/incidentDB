@@ -1,0 +1,5 @@
+<div class="row justify-content-center">
+  <%= will_paginate(@incidents, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, 
+    previous_label: '＜前ページ', next_label: '次ページ＞') %>
+  <br>
+</div>

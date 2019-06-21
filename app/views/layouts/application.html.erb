@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Incidentdb</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= include_gon %>
+  </head>
+
+  <header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <!--<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="ナビゲーションの切替">
+      <span class="navbar-toggler-icon"></span>
+    </button>-->
+    <a class="navbar-brand" href="#">
+      <% if Rails.env == 'production' then %>
+        インシデントDB
+      <% else %>
+        開発環境インシデントDB
+      <% end %>
+    </a>
+    <!--<div class="collapse navbar-collapse" id="navbarNavDropdown">-->
+      <ul class="list-inline mr-auto my-lg-1">
+        <li class="list-inline-item">
+          <a class="nav-link text-body" href="<%= incidents_filter_path %>">ホーム</a>
+        </li>
+        <li class="list-inline-item">
+          <a class="nav-link text-body" href="<%= incidents_analysis_path %>">インシデント分析</a>
+        </li>
+        <li class="list-inline-item">
+          <a class="nav-link text-body" href="<%= choices_path %>">select項目メンテナンス</a>
+        </li>
+        <li class="list-inline-item">
+          <a class="nav-link text-body" href="<%= new_incident_path %>">新規インシデント登録</a>
+        </li>
+      </ul>
+    <!--</div> /.navbar-collapse -->
+  </nav>
+  </header>
+  <body>
+    <%= yield %>
+  </body>
+</html>

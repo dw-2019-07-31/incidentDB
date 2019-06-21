@@ -1,0 +1,122 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <div class="card bg-light mb-3">
+    <div class="card-header col-form-label col-form-label-md">分析対象期間</br>(インシデント別と申告者別のみ対応中)</div>
+    <div class="card-body form">
+      <div class="row form-group">
+        <input class="no-initial-date-picker control-label col-md-3 form-control mr-3" type="text" name="start-date" id="start-date" value="" placeholder="開始日">
+      <!--<div class="row form-group">-->
+        <input class="no-initial-date-picker control-label col-md-3 form-control mr-3" type="text" name="end-date" id="end-date" value="" placeholder="終了日">
+        <input class="btn btn-primary" type="button" value="フィルター" id="filter-term" onclick="filterTerm()">
+      </div>
+    </div>
+  </div>
+  <div class="card bg-light mb-3">
+    <div class="card-header">総対応件数</div>
+    <div class="row card-body">
+      <div name="incident-all">
+        <%= @all_incidents_count %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-light mb-3">
+    <div class="card-header">
+      <div>インシデント別</div>
+    </div>
+    <div class="row card-body">
+      <div class="col-md-6">
+        <table id="type-tbl">
+          <% @type_count.each do |value| %>
+            <tr>
+              <td width="100"><div name="incident-type"><%= value[0] %></div></td>
+              <td width="100"><div name="incident-type-count"><%= value[1] %></div></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="chart-container col-md-6">
+        <canvas id="typeChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-light mb-3">
+    <div class="card-header">期間別インシデント数</div>
+    <div class="row card-body">
+      <div class="col-md-6">
+        <table id="term-tbl">
+          <% @month_count.each do |value| %>
+            <tr>
+              <td width="100"><div name="incident-term"><%= value[0] %></div></td>
+              <td width="100"><div name="incident-term-count"><%= value[1] %></div></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="chart-container col-md-6">
+        <canvas id="termChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-container col-md-6">
+      <canvas id="termChart"></canvas>
+    </div>
+  </div>
+
+  <div class="card bg-light mb-3">
+    <div class="card-header">申告者別インシデント数（上位10名）</div>
+    <div class="row card-body">
+      <div class="col-md-6">
+        <table id="username-tbl">
+          <% @user_count.each do |value| %>
+            <tr>
+              <td width="100"><div name="incident-username"><%= value[0] %></td>
+              <td width="100"><div name="incident-username-count"><%= value[1] %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="chart-container col-md-6">
+        <canvas id="usernameChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-light mb-3">
+    <div class="card-header">期間別総対応工数(H)</div>
+    <div class="row card-body">
+      <div class="col-md-6">
+        <table>
+          <% @costtime_count.each do |value| %>
+            <tr>
+              <td width="100"><div name="costtime-term"><%= value[0] %></div></td>
+              <td width="100"><div name="costtime-term-count"><%= value[1] %></div></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="chart-container col-md-6">
+        <canvas id="costtimeChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-light mb-3">
+    <div class="card-header">インシデント別期間別件数</div>
+    <div class="row card-body">
+      <div class="chart-container col-md-6 mx-auto">
+        <canvas id="incidenttermChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-3">
+    <%= link_to '戻る', incidents_filter_path, :class => "btn btn-warning col-6 mb-3" %>
+  </div>
+
+</div>
+<!--<h3>ランキング</h3>
+<h5>申告者別</h5>
+<h5>日別</h5>
+<h5>対応時間</h5>-->

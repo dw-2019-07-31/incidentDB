@@ -1,0 +1,32 @@
+<div class="container">
+
+  <p id="notice"><%= notice %></p>
+
+  <h1>Choices</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Column name</th>
+        <th>Value</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @choices.each do |choice| %>
+        <tr>
+          <td><%= choice.column_name %></td>
+          <td><%= choice.value %></td>
+          <td><%= link_to 'Show', choice %></td>
+          <td><%= link_to 'Edit', edit_choice_path(choice) %></td>
+          <td><%= link_to 'Destroy', choice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Choice', new_choice_path %>
+</div>

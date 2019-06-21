@@ -1,0 +1,8 @@
+<div class="container-fluid">
+  <% if Rails.env == 'production' then %>
+    <h1>インシデント分析</h1>
+  <% else %>
+    <h1>開発環境インシデント分析</h1>
+  <% end %>
+</div>
+<%= render 'analysis'%>

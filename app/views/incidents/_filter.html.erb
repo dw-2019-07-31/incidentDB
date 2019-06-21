@@ -1,0 +1,122 @@
+<%= form_tag incidents_filter_path, method: :get, :name => "searchForm" do %>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light text-dark fixed-left navar-padding">
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav">
+
+      <li class="nav-item searchFrame">
+        <span class="clearButton" onclick="ClearButton_Click('reception_date')">×</span>
+        <span id="reception-date-label" class="col-form-label col-form-label-sm">受付日</span>
+        <input class="no-initial-date-picker form-control-sm" type="text" name="reception_date" id="reception_date" value="<%= params["reception_date"] %>">
+      </li>
+      
+      <li class="nav-item">
+        <span class="col-form-label col-form-label-sm">インシデント種別</span>
+        <!-- <%= collection_select :type, "type", Incident.select("type").distinct, "type", "type", {:include_blank => true}, {:class => "custom-select"} %> -->
+        <%= select_tag :type, options_for_select(@choice_type,:selected => params["type"]), :include_blank => true, :class => "form-control-sm" %>
+      </li>
+      
+      <li class="nav-item searchFrame">
+        <span class="clearButton" onclick="ClearButton_Click('product')">×</span>
+        <div class="col-form-label col-form-label-sm" id="product-label">製品名</div>
+        <%= text_field_tag :product, params["product"], :class => "form-control-sm", :id => "product" %>
+      </li>
+
+      <li class="nav-item searchFrame">
+        <div class="col-form-label col-form-label-sm" id="status-label">ステータス</div>
+        <!-- <%= collection_select :status, :status, Incident.select("status").distinct, :id, :status, {:include_blank => true}, {:class => "custom-select"} %> -->
+        <%= select_tag :status, options_for_select(@choice_status,:selected => params["status"]), :include_blank => true, :class => "form-control-sm" %>
+      </li>
+      
+      <li class="nav-item searchFrame">
+        <span class="clearButton" onclick="ClearButton_Click('subject')">×</span>
+        <div class="col-form-label col-form-label-sm" id="subject-label">申告内容</div>
+        <%= text_field_tag :subject, params["subject"], :class => "form-control-sm", :id => "subject" %>
+      </li>
+
+      <li class="nav-item searchFrame">
+        <span class="clearButton" onclick="ClearButton_Click('solution')">×</span>
+        <div class="col-form-label col-form-label-sm" id="solution-label">本格対処</div>
+        <%= text_field_tag :solution, params["solution"], :class => "form-control-sm", :id => "solution" %>         
+      </li>
+
+      <li class="nav-item searchFrame">
+        <span class="clearButton" onclick="ClearButton_Click('close_date')">×</span>
+        <div class="col-form-label col-form-label-sm" id="close_date-label">クローズ日</div>
+        <input class="no-initial-date-picker form-control-sm" type="text" name="close_date" id="close_date" value="<%= params["close_date"] %>">         
+      </li>
+
+      <li class="nav-item searchFrame">
+        <div class="col-form-label col-form-label-sm" id="operator-label">対応者</div>
+        <%= select_tag :operator, options_for_select(@choice_operator,:selected => params["operator"]), :include_blank => true, :class => "form-control-sm" %>
+      </li>
+
+      <li class="nav-item searchFrame">
+        <span class="clearButton" onclick="ClearButton_Click('story')">×</span>
+        <div class="col-form-label col-form-label-sm" id="story-label">対応経緯</div>
+        <%= text_field_tag :story, params["story"], :class => "form-control-sm", :id => "story" %>
+      </li>
+
+      <li class="nav-item searchFrame">
+        <span class="clearButton" onclick="ClearButton_Click('costtime')">×</span>
+        <div class="col-form-label col-form-label-sm" id="costtime-label">対応時間(分)</div>
+        <%= text_field_tag :costtime, params["costtime"], :class => "form-control-sm", :id => "costtime" %>
+      </li>
+
+      <li class="nav-item searchFrame">
+        <span class="clearButton" onclick="ClearButton_Click('remarks')">×</span>
+        <div class="col-form-label col-form-label-sm" id="remarks-label">備考</div>
+        <%= text_field_tag :remarks, params["remarks"], :class => "form-control-sm", :id => "remarks" %>
+      </li>
+      
+      <li class="nav-item searchFrame">
+        <button type="button" class="btn btn-secondary col mt-2" data-toggle="collapse" data-target="#moresearch">more search</button>
+      </li>
+
+      <div class="collapse" id="moresearch"> 
+        <li class="nav-item searchFrame">
+          <span class="clearButton" onclick="ClearButton_Click('group')">×</span>
+          <div class="col-form-label col-form-label-sm" id="group-label">申告者部門</div>
+          <%= text_field_tag :group, params["group"], :class => "form-control-sm form-clear", :id => "group" %>
+        </li>
+
+        <li class="nav-item searchFrame">
+          <span class="clearButton" onclick="ClearButton_Click('username')">×</span>
+          <div class="col-form-label col-form-label-sm" id="username-label">申告者</div>
+          <%= text_field_tag :username, params["username"], :class => "form-control-sm form-clear", :id => "username" %>
+        </li>
+
+        <li class="nav-item searchFrame">
+          <span class="clearButton" onclick="ClearButton_Click('hostname')">×</span>
+          <div class="col-form-label col-form-label-sm" id="hostname-label">ホスト名</div>
+          <%= text_field_tag :hostname, params["hostname"], :class => "form-control-sm", :id => "hostname" %>
+        </li>
+        
+        <li class="nav-item searchFrame">
+          <span class="clearButton" onclick="ClearButton_Click('os')">×</span>
+          <div class="col-form-label col-form-label-sm" id="os-label">OS種別</div>
+          <%= text_field_tag :os, params["os"], :class => "form-control-sm", :id => "os" %>
+        </li>
+      </div>
+
+      <li class="nav-item">
+          <%= submit_tag '　検索　', class: 'btn btn-primary col-12 mb-2 mt-2' %>
+      </li>
+
+      <li class="nav-item">
+          <input type="button" value="リセット" onclick="clearFormAll()" class="btn btn-warning col-12 mb-2">
+      </li>
+
+    </ul>
+    
+  </div>
+
+  <!--<nav class="navbar">
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="折り畳みナビゲーション">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>-->
+
+</nav>
+<% end %>

@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @incident.type %>
+</p>
+
+<p>
+  <strong>Reception date:</strong>
+  <%= @incident.reception_date %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @incident.group %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @incident.username %>
+</p>
+
+<p>
+  <strong>Hostname:</strong>
+  <%= @incident.hostname %>
+</p>
+
+<p>
+  <strong>Os:</strong>
+  <%= @incident.os %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @incident.product %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @incident.subject %>
+</p>
+
+<p>
+  <strong>Solution:</strong>
+  <%= @incident.solution %>
+</p>
+
+<p>
+  <strong>Story:</strong>
+  <%= @incident.story %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @incident.status %>
+</p>
+
+<p>
+  <strong>Close date:</strong>
+  <%= @incident.close_date %>
+</p>
+
+<p>
+  <strong>Remarks:</strong>
+  <%= @incident.remarks %>
+</p>
+
+<p>
+  <strong>Operator:</strong>
+  <%= @incident.operator %>
+</p>
+
+<p>
+  <strong>Costtime:</strong>
+  <%= @incident.costtime %>
+</p>
+
+<%= link_to 'Edit', edit_incident_path(@incident) %> |
+<%= link_to 'Back', incidents_path %>

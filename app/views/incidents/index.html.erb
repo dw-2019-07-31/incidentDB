@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h5>インシデント一覧</h5>
+
+<%= link_to '新規インシデント', new_incident_path %>
+
+<!--仮で、styleを直接指定しているが、そのうち直す・・・ -->
+<table class="table table-striped" id="tbl" style="font-size: 8pt;">
+  <thead>
+    <tr>
+      <th>種別</th>
+      <th>受付日</th>
+      <th>申告者部門</th>
+      <th>申告者</th>
+      <th>ホスト名</th>
+      <th>製品名</th>
+      <th>申告内容</th>
+      <th>本格対処</th>
+      <th>ステータス</th>
+      <th>クローズ日</th>
+      <th>対応者</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @incidents.each do |incident| %>
+      <tr>
+        <td><%= incident.type %></td>
+        <td><%= incident.reception_date %></td>
+        <td><%= incident.group %></td>
+        <td><%= incident.username %></td>
+        <td><%= incident.hostname %></td>
+        <td><%= incident.product %></td>
+        <td><%= incident.subject %></td>
+        <td><%= incident.solution %></td>
+        <td><%= incident.status %></td>
+        <td><%= incident.close_date %></td>
+        <td><%= incident.operator %></td>
+        <!-- <td><%= link_to 'Show', incident %></td> -->
+        <td>
+          <%= link_to '編集', edit_incident_path(incident) %>
+          <br>
+          <%= link_to '削除', incident, method: :delete, data: { confirm: '本当に削除しますか?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

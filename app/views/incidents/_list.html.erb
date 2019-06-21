@@ -1,0 +1,78 @@
+<!-- listだけ左サイドバーのCSSを適用するためのクラス定義 -->
+<div class="incident-list" id="incident-list">
+
+  <div class="container-fluid">
+
+    <% if notice %>
+      <p class="alert alert-primary"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    <% if flash[:error] %>
+      <p class="alert alert-danger"><%= flash[:error] %></p>
+    <% end %>
+
+    <!-- <h5>インシデント一覧</h5> -->
+
+    <!--<%= link_to '新規インシデント', new_incident_path %>-->
+
+    <!--仮で、styleを直接指定しているが、そのうち直す・・・ -->
+    <table class="table table-responsive table-sm table-hover" id="tbl" style="font-size: 8pt;">
+      <thead class="thead-dark" style="font-size: 8pt;">
+        <tr>
+          <th>種別</th>
+          <th>受付日</th>
+          <th>申告者部門</th>
+          <th>申告者</th>
+          <th>ホスト名</th>
+          <th>製品名</th>
+          <th>申告内容</th>
+          <th>本格対処</th>
+          <th>ステータス</th>
+          <th>クローズ日</th>
+          <th>対応者</th>
+          <th>添付有無</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+
+      <tbody id="tbody-padding">
+        <% @incidents.each do |incident| %>
+          <tr>
+            <td><%= incident.type %></td>
+            <td><%= incident.reception_date %></td>
+            <td><%= incident.group %></td>
+            <td><%= incident.username %></td>
+            <td><%= incident.hostname %></td>
+            <td><%= incident.product %></td>
+            <td><%= link_to incident.subject, edit_incident_path(incident) %></td>
+            <!--<td><%= incident.subject %></td>-->
+            <td><%= incident.solution %></td>
+            <td><%= incident.status %></td>
+            <td><%= incident.close_date %></td>
+            <td><%= incident.operator %></td>
+            <% if incident.avatars.size == 0 %>
+            <td></td>
+            <% else %>
+            <td>○</td>
+            <% end %>
+            
+            <!-- <td><%= link_to 'Show', incident %></td> -->
+            <td>
+              <%= link_to '削除', incident, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+
+    </table>
+    <div class="form-row justify-content-center">
+      <input type="button" value="先頭に戻る" onclick="return_head()" class="btn btn-secondary col-4 md-2">
+    </div>
+    <%= link_to "CSV出力", incidents_path(format: :csv), class: "btn btn-primary" %>
+    <%= render 'pagenate' %>
+
+  </div>
+</div>
