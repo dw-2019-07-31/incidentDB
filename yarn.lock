@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-chart.js@^2.7.1:
-  version "2.7.3"
-  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.7.3.tgz#cdb61618830bf216dc887e2f7b1b3c228b73c57e"
-  integrity sha512-3+7k/DbR92m6BsMUYP6M0dMsMVZpMnwkUyNSAbqolHKsbIzH2Q4LWVEHHYq7v0fmEV8whXE0DrjANulw9j2K5g==
+chart.js@^2.5.0, chart.js@^2.9.4:
+  version "2.9.4"
+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.9.4.tgz#0827f9563faffb2dc5c06562f8eb10337d5b9684"
+  integrity sha512-B07aAzxcrikjAPyV+01j7BmOpxtQETxTSlQ26BEYJ+3iUkbNKaOJ/nDbT6JjyqYxseM0ON12COHYdU2cTIjC7A==
   dependencies:
     chartjs-color "^2.1.0"
     moment "^2.10.2"
@@ -24,6 +24,13 @@ chartjs-color@^2.1.0:
   dependencies:
     chartjs-color-string "^0.5.0"
     color-convert "^0.5.3"
+
+chartjs-plugin-colorschemes@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/chartjs-plugin-colorschemes/-/chartjs-plugin-colorschemes-0.3.0.tgz#d8af2a9ecd98cd254f617ff4ded914b8f8e70991"
+  integrity sha512-fvykQ5fxRWwngGDK7mVhxQ0dRG/+KxgO2bwIoUxnzTDXrjhUBSYFTiGakw/0VoG3tzt6zIvgQ1MQKcdtuVVbSg==
+  dependencies:
+    chart.js "^2.5.0"
 
 color-convert@^0.5.3:
   version "0.5.3"
